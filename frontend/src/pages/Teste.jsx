@@ -6,7 +6,7 @@ const GlobalStyles = createGlobalStyle`
   body {
     font-family: Arial, sans-serif;
     margin: 0;
-    padding: 0;
+    padding: 0 15%;
   }
 
   * {
@@ -15,9 +15,7 @@ const GlobalStyles = createGlobalStyle`
 `;
 
 const HeaderWrapper = styled.header`
-  background-color: #333;
   color: white;
-  padding: 16px;
   text-align: center;
 `;
 
@@ -34,8 +32,7 @@ const ListWrapper = styled.ul`
 `;
 
 const ListItem = styled.li`
-  padding: 8px;
-  border-bottom: 1px solid #ddd;
+  border: 1px solid #ddd;
 `;
 
 const Header = () => {
@@ -59,21 +56,25 @@ const TaskForm = ({ onSubmit }) => {
 
   return (
     <FormWrapper onSubmit={handleSubmit}>
-      <label htmlFor="task">Task:</label>
+      <label htmlFor="task">Tarefa:</label>
       <input
         type="text"
         id="task"
         value={task}
         onChange={(e) => setTask(e.target.value)}
       />
-      <button type="submit">Add Task</button>
+      <button type="submit">Adicionar Tarefa</button>
     </FormWrapper>
   );
 };
 
-const TaskList = ({ tasks }) => {
+const TaskList = ({ tasks, onTaskRemove }) => {
   // Inverte a ordem dos dias (os mais recentes ficarão em cima)
   const reversedTasks = [...tasks].reverse();
+
+  const handleTaskRemove = (date, index) => {
+    onTaskRemove(date, index);
+  };
 
   return (
     <ListWrapper>
@@ -82,7 +83,12 @@ const TaskList = ({ tasks }) => {
           <h2>{date}</h2>
           <ListWrapper>
             {tasks.map((task, index) => (
-              <ListItem key={index}>{task}</ListItem>
+              <ListItem key={index}>
+                {task}
+                <button onClick={() => handleTaskRemove(date, index)}>
+                  Remove
+                </button>
+              </ListItem>
             ))}
           </ListWrapper>
         </React.Fragment>
@@ -114,15 +120,23 @@ const Teste = () => {
     setTasks(updatedTasks);
   };
 
+  const handleTaskRemove = (date, index) => {
+    const updatedTasks = tasks.map((item) =>
+      item.date === date ? { ...item, tasks: item.tasks.filter((_, i) => i !== index) } : item
+    );
+
+    setTasks(updatedTasks);
+  };
+
   return (
     <>
       <GlobalStyles />
       <HeaderWrapper>
-        <h1>Daily Scrum</h1>
+        <h1>Daily Scrum ✅</h1>
         <button onClick={handleNextDay}><FaArrowRight /></button>
       </HeaderWrapper>
       <TaskForm onSubmit={handleTaskSubmit} />
-      <TaskList tasks={tasks} />
+      <TaskList tasks={tasks} onTaskRemove={handleTaskRemove} />
     </>
   );
 };
