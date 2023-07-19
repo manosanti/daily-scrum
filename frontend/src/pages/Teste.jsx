@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styled, { createGlobalStyle } from 'styled-components';
+import { FaArrowRight } from 'react-icons/fa';
 
 const GlobalStyles = createGlobalStyle`
   body {
@@ -71,9 +72,12 @@ const TaskForm = ({ onSubmit }) => {
 };
 
 const TaskList = ({ tasks }) => {
+  // Inverte a ordem dos dias (os mais recentes ficarão em cima)
+  const reversedTasks = [...tasks].reverse();
+
   return (
     <ListWrapper>
-      {tasks.map(({ date, tasks }) => (
+      {reversedTasks.map(({ date, tasks }) => (
         <React.Fragment key={date}>
           <h2>{date}</h2>
           <ListWrapper>
@@ -88,16 +92,23 @@ const TaskList = ({ tasks }) => {
 };
 
 const Teste = () => {
+  const [date, setDate] = useState(new Date());
   const [tasks, setTasks] = useState([]);
 
+  const handleNextDay = () => {
+    const nextDay = new Date(date);
+    nextDay.setDate(nextDay.getDate() + 1);
+    setDate(nextDay);
+  };
+
   const handleTaskSubmit = (task) => {
-    const date = new Date().toLocaleDateString('pt-BR');
+    const dateKey = date.toLocaleDateString('pt-BR');
     const updatedTasks = tasks.map((item) =>
-      item.date === date ? { ...item, tasks: [...item.tasks, task] } : item
+      item.date === dateKey ? { ...item, tasks: [...item.tasks, task] } : item
     );
 
-    if (!updatedTasks.some((item) => item.date === date)) {
-      updatedTasks.push({ date, tasks: [task] });
+    if (!updatedTasks.some((item) => item.date === dateKey)) {
+      updatedTasks.push({ date: dateKey, tasks: [task] });
     }
 
     setTasks(updatedTasks);
@@ -106,7 +117,10 @@ const Teste = () => {
   return (
     <>
       <GlobalStyles />
-      <Header />
+      <HeaderWrapper>
+        <h1>Daily Scrum</h1>
+        <button onClick={handleNextDay}><FaArrowRight /></button>
+      </HeaderWrapper>
       <TaskForm onSubmit={handleTaskSubmit} />
       <TaskList tasks={tasks} />
     </>
