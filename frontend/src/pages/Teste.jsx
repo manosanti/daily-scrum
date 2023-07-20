@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styled, { createGlobalStyle } from 'styled-components';
-import { FaArrowRight } from 'react-icons/fa';
+import { FaArrowRight, FaArrowLeft } from 'react-icons/fa';
 
 const GlobalStyles = createGlobalStyle`
   body {
@@ -24,21 +24,86 @@ const FormWrapper = styled.form`
   flex-direction: column;
   align-items: center;
   margin-top: 24px;
+
+  label {
+    color: white;
+    font-size: 1.3rem;
+  }
+
+  input {
+    width: 100%;
+    outline: none;
+    border: none;
+    border-radius: 10px;
+    padding: 1%;
+    background-color: var(--gray-dark);
+    color: white;
+    margin: 10px 0;
+    transition: .3s;
+
+    &:focus {
+      outline: none;
+      border: none;
+    }
+
+    &:hover {
+      background-color: var(--gray);
+    }
+  }
+
+  button {
+    cursor: pointer;
+    background-color: var(--blue);
+    padding: 7px;
+    color: white;
+    outline: none;
+    border: none;
+    border-radius: 6px;
+    transition: .3s;
+
+    &:hover {
+      transform: scale(1.04);
+      background-color: #4e68c3;
+    }
+  }
 `;
 
 const ListWrapper = styled.ul`
   list-style: none;
   padding: 0;
+  color: white;
+
+  h2 {
+    color: white;
+    margin-bottom: 10px;
+  }
 `;
 
 const ListItem = styled.li`
-  border: 1px solid #ddd;
+  border: 2px solid var(--gray-light);
+  border-radius: 10px;
+  margin-bottom: 5px;
+  
+  button {
+    border-radius: 10px;
+    margin-right: 10px;
+    padding: 10px;
+    cursor: pointer;
+    background-color: none;
+    border: none;
+    outline: none;
+    transition: .3s;
+
+    &:hover {
+      background-color: #ff000061;
+    }
+  }
 `;
 
-const Header = () => {
+const Header = ({ currentDate }) => {
   return (
     <HeaderWrapper>
-      <h1>Daily Scrum</h1>
+      <p>{currentDate}</p>
     </HeaderWrapper>
   );
 };
@@ -84,10 +149,10 @@ const TaskList = ({ tasks, onTaskRemove }) => {
           <ListWrapper>
             {tasks.map((task, index) => (
               <ListItem key={index}>
-                {task}
                 <button onClick={() => handleTaskRemove(date, index)}>
-                  Remove
+                  ❌
                 </button>
+                {task}
               </ListItem>
             ))}
           </ListWrapper>
@@ -105,6 +170,12 @@ const Teste = () => {
     const nextDay = new Date(date);
     nextDay.setDate(nextDay.getDate() + 1);
     setDate(nextDay);
+  };
+
+  const handlePreviousDay = () => {
+    const prevDay = new Date(date);
+    prevDay.setDate(prevDay.getDate() - 1);
+    setDate(prevDay);
   };
 
   const handleTaskSubmit = (task) => {
@@ -128,13 +199,17 @@ const Teste = () => {
     setTasks(updatedTasks);
   };
 
+  const formattedDate = date.toLocaleDateString('pt-BR');
+
   return (
     <>
       <GlobalStyles />
       <HeaderWrapper>
         <h1>Daily Scrum ✅</h1>
+        <button onClick={handlePreviousDay}><FaArrowLeft /></button>
         <button onClick={handleNextDay}><FaArrowRight /></button>
       </HeaderWrapper>
+      <Header currentDate={formattedDate} />
       <TaskForm onSubmit={handleTaskSubmit} />
       <TaskList tasks={tasks} onTaskRemove={handleTaskRemove} />
     </>
