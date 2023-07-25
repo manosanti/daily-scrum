@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled, { createGlobalStyle } from 'styled-components';
 import { FaArrowRight, FaArrowLeft } from 'react-icons/fa';
 
@@ -134,7 +134,7 @@ const TaskForm = ({ onSubmit }) => {
 };
 
 const TaskList = ({ tasks, onTaskRemove }) => {
-  // Inverte a ordem dos dias (os mais recentes ficarão em cima)
+  // Inverte a ordem dos dias (os dias mais recentes ficarão em cima)
   const reversedTasks = [...tasks].reverse();
 
   const handleTaskRemove = (date, index) => {
@@ -189,6 +189,7 @@ const Teste = () => {
     }
 
     setTasks(updatedTasks);
+    saveTasksToLocalStorage(updatedTasks);
   };
 
   const handleTaskRemove = (date, index) => {
@@ -197,6 +198,21 @@ const Teste = () => {
     );
 
     setTasks(updatedTasks);
+    saveTasksToLocalStorage(updatedTasks);
+  };
+
+  const getSavedTasks = () => {
+    const savedTasks = localStorage.getItem('tasks');
+    return savedTasks ? JSON.parse(savedTasks) : [];
+  };
+
+  useEffect(() => {
+    const savedTasks = getSavedTasks();
+    setTasks(savedTasks);
+  }, []);
+
+  const saveTasksToLocalStorage = (tasks) => {
+    localStorage.setItem('tasks', JSON.stringify(tasks));
   };
 
   const formattedDate = date.toLocaleDateString('pt-BR');
