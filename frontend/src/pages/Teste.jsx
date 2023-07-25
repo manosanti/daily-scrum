@@ -18,6 +18,16 @@ const HeaderWrapper = styled.header`
   color: white;
   text-align: center;
 
+  p {
+    margin: 0 auto;
+    text-align: center !important;
+    font-size: 40px;
+    border-radius: 30px;
+    padding: 10px 20px;
+    border: 2px solid var(--gray);
+    width: min-content;
+  }
+
   button {
     cursor: pointer;
     padding: 30px;
@@ -75,6 +85,7 @@ const FormWrapper = styled.form`
     border: none;
     border-radius: 6px;
     transition: .3s;
+    margin: 10px 0 20px 0;
 
     &:hover {
       transform: scale(1.04);
@@ -85,12 +96,14 @@ const FormWrapper = styled.form`
 
 const ListWrapper = styled.ul`
   list-style: none;
-  padding: 0;
+  border-radius: 20px;
+  padding: 30px 10px 10px 10px;
   color: white;
+  border: 3px solid var(--gray);
 
   h2 {
     color: white;
-    margin-bottom: 10px;
+    margin: 25px 0 10px 0;
   }
 `;
 
