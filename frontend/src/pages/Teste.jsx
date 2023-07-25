@@ -17,6 +17,21 @@ const GlobalStyles = createGlobalStyle`
 const HeaderWrapper = styled.header`
   color: white;
   text-align: center;
+
+  button {
+    cursor: pointer;
+    padding: 30px;
+    font-size: 25px;
+    outline: none;
+    border: none;
+    color: var(--blue);
+    padding: 0;
+    transition: .3s;
+
+    &:hover {
+      color: var(--blue-hover);
+    }
+  }
 `;
 
 const FormWrapper = styled.form`

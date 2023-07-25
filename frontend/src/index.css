@@ -6,6 +6,9 @@
   --gray: #36393e;
   --gray-dark: #282b30;
   --gray-darker: #1e2124;
+
+  /* Hover */
+  --blue-hover: #4961ba;
 }
 
 * {
