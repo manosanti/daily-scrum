@@ -97,7 +97,7 @@ const FormWrapper = styled.form`
 const ListWrapper = styled.ul`
   list-style: none;
   border-radius: 20px;
-  padding: 30px 10px 10px 10px;
+  padding: 30px;
   color: white;
   border: 3px solid var(--gray);
 
@@ -174,7 +174,6 @@ const TaskList = ({ tasks, onTaskRemove }) => {
       {reversedTasks.map(({ date, tasks }) => (
         <React.Fragment key={date}>
           <h2>{date}</h2>
-          <ListWrapper>
             {tasks.map((task, index) => (
               <ListItem key={index}>
                 <button onClick={() => handleTaskRemove(date, index)}>
@@ -183,7 +182,6 @@ const TaskList = ({ tasks, onTaskRemove }) => {
                 {task}
               </ListItem>
             ))}
-          </ListWrapper>
         </React.Fragment>
       ))}
     </ListWrapper>
