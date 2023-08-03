@@ -37,6 +37,7 @@ const HeaderWrapper = styled.header`
     color: var(--blue);
     padding: 0;
     transition: .3s;
+    margin: 1% 0;
 
     &:hover {
       color: var(--blue-hover);
@@ -246,11 +247,10 @@ const Teste = () => {
   return (
     <>
       <GlobalStyles />
-      <HeaderWrapper>
-        <h1>Daily Scrum ✅</h1>
-        <button onClick={handlePreviousDay}><FaArrowLeft /></button>
-        <button onClick={handleNextDay}><FaArrowRight /></button>
-      </HeaderWrapper>
+        <HeaderWrapper>
+          <button onClick={handlePreviousDay}><FaArrowLeft /></button>
+          <button onClick={handleNextDay}><FaArrowRight /></button>
+        </HeaderWrapper>
       <Header currentDate={formattedDate} />
       <TaskForm onSubmit={handleTaskSubmit} />
       <TaskList tasks={tasks} onTaskRemove={handleTaskRemove} />
