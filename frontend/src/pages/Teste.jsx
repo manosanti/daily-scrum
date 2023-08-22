@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styled, { createGlobalStyle } from 'styled-components';
 import { FaArrowRight, FaArrowLeft } from 'react-icons/fa';
-import ContasButton from '../assets/Components/ContasButton';
+// import ContasButton from '../assets/Components/ContasButton';
 
 const GlobalStyles = createGlobalStyle`
 
@@ -249,10 +249,10 @@ const Teste = () => {
   return (
     <>
       <GlobalStyles />
-      <ContasButton
+      {/* <ContasButton
         imageURL='https://cdn-icons-png.flaticon.com/128/3562/3562056.png'
         imageALT='imagem de uma calculadora'
-      />
+      /> */}
         <HeaderWrapper>
           <button onClick={handlePreviousDay}><FaArrowLeft /></button>
           <button onClick={handleNextDay}><FaArrowRight /></button>

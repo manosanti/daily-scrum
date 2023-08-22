@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import ContasButton from '../assets/Components/ContasButton';
+// import ContasButton from '../assets/Components/ContasButton';
 
 const Container = styled.div`
   width: 300px;
@@ -113,10 +113,10 @@ const Contas = () => {
           <RemoveButton onClick={() => removeGasto(index)}>Remover</RemoveButton>
         </GastoItem>
       ))}
-      <ContasButton
+      {/* <ContasButton
         imageURL='https://cdn-icons-png.flaticon.com/128/3562/3562056.png'
         imageALT='imagem de uma calculadora'
-      />
+      /> */}
     </Container>
   );
 };
