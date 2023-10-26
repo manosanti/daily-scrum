@@ -13,8 +13,12 @@
 
 * {
   font-family: 'Poppins', sans-serif;
-  background-color: var(--gray-darker);
+  /* background-color: var(--gray-darker); */
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+body {
+  background-color: var(--gray-darker);
 }
