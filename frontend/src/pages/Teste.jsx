@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styled, { createGlobalStyle } from 'styled-components';
 import { FaArrowRight, FaArrowLeft } from 'react-icons/fa';
-// import ContasButton from '../assets/Components/ContasButton';
 
 const GlobalStyles = createGlobalStyle`
 
@@ -19,7 +18,7 @@ const GlobalStyles = createGlobalStyle`
 const HeaderWrapper = styled.header`
   color: white;
   text-align: center;
-
+  
   p {
     margin: 0 auto;
     text-align: center !important;
@@ -40,6 +39,7 @@ const HeaderWrapper = styled.header`
     padding: 0;
     transition: .3s;
     margin: 1% 0;
+    background-color: var(--gray-darker);
 
     &:hover {
       color: var(--blue-hover);
@@ -120,7 +120,7 @@ const ListItem = styled.li`
     margin-right: 10px;
     padding: 10px;
     cursor: pointer;
-    background-color: none;
+    background-color: var(--gray-darker);
     border: none;
     outline: none;
     transition: .3s;
