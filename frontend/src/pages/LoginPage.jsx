@@ -5,12 +5,12 @@ function LoginPage() {
   return (
     <LoginFormContainer>
         <LoginFormWrapper>
-            <p>Join For Free</p>
-            <h2>Unleash the Traveler <SpanAzul>inside YOU</SpanAzul>, enjoy your Dream Vacation</h2>
-            <p className='infoText'>get started with the easisest and most secure website to buy travel tickets</p>
+            <p>Participe Gratuitamente!</p>
+            <h2>Maximize Sua Produtividade com o <SpanAzul>DailyFlow</SpanAzul>. Suas Tarefas Diárias Simplificadas e Protegidas.</h2>
+            <p className='infoText'>Comece Com a Plataforma Mais Simples e Segura para Gerenciar Suas Atividades Diárias com o DailyFlow.</p>
         </LoginFormWrapper>
         <LoginMessageWrapper>
-            <h2>Create<br></br>new Account<SpanAzul>.</SpanAzul></h2>
+            <h2>Crie uma<br></br>Nova conta<SpanAzul>.</SpanAzul></h2>
             <LoginForm>
                 <form>
                     <div>
@@ -23,7 +23,7 @@ function LoginPage() {
                         <input type='password' placeholder='password'></input>
                     </div>
                 </form>
-                <p>Already A member? <a href='#'><SpanAzul>Log In</SpanAzul></a></p>
+                <p>Já é membro? <a href='#'><SpanAzul>Entrar</SpanAzul></a></p>
             </LoginForm>
             <ButtonsGrid>
                 <button><a href="">Change Method</a></button>
@@ -39,6 +39,10 @@ export default LoginPage
 
 const SpanAzul = styled.span`
     color: #188DED;
+    
+    a {
+        text-decoration: none;
+    }
 `
 
 const LoginForm = styled.div`
